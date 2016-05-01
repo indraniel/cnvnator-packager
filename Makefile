@@ -1,6 +1,12 @@
 .PHONY: clean dependencies debian
 
-BASE_DIR          := $(HOME)/automation
+# setup a custom gcc 4.8.4
+GCC_DIR           := /gscuser/idas/software/gcc/gcc-4.8.4
+export CC         := $(GCC_DIR)/bin/gcc
+export CXX        := $(GCC_DIR)/bin/g++
+export $(PATH)    := $(GCC_DIR)/bin:$(PATH)
+
+BASE_DIR          := /tmp/cnvnator-automation
 BASE_INSTALL_DIR  := $(BASE_DIR)/local
 BASE_SRC_DIR      := $(BASE_DIR)/src
 
@@ -48,12 +54,23 @@ $(CNVNATOR_EXE): export YEPPPINCLUDEDIR := $(BASE_INSTALL_DIR)/include
 $(CNVNATOR_EXE): export ROOTSYS := $(BASE_INSTALL_DIR)
 $(CNVNATOR_EXE): $(YEPP_LIB) $(SAMTOOLS_LIB) | $(CNVNATOR_SRC_DIR) 
 	cd $(CNVNATOR_SRC_DIR) && \
-		$(MAKE) && \
+		CC=$(GCC_DIR)/bin/gcc \
+		CXX=$(GCC_DIR)/bin/g++ \
+		ROOTSYS=$(BASE_INSTALL_DIR) \
+		YEPPPLIBDIR=$(BASE_INSTALL_DIR)/lib \
+		YEPPPINCLUDEDIR=$(BASE_INSTALL_DIR)/include \
+		PATH=$(GCC_DIR)/bin:$(BASE_INSTALL_DIR)/bin:$(PATH) \
+		LD_LIBRARY_PATH=$(GCC_DIR)/lib64:$(BASE_INSTALL_DIR)/lib:$(BASE_INSTALL_DIR)/lib/root:$(LD_LIBRARY_PATH) \
+			$(MAKE) && \
 		cp -v cnvnator $(BASE_INSTALL_DIR)/bin/cnvnator-$(CNVNATOR_VERSION)
 
 $(SAMTOOLS_LIB): | $(SAMTOOLS_SRC_DIR)
 	cd $(SAMTOOLS_SRC_DIR) && \
-		$(MAKE)
+		CC=$(GCC_DIR)/bin/gcc \
+		CXX=$(GCC_DIR)/bin/g++ \
+		PATH=$(GCC_DIR)/bin:$(PATH) \
+		LD_LIBRARY_PATH=$(GCC_DIR)/lib64:$(LD_LIBRARY_PATH) \
+			$(MAKE)
 
 $(SAMTOOLS_SRC_DIR): | $(SAMTOOLS_TGZ_PATH) $(CNVNATOR_SRC_DIR) 
 	cd $(CNVNATOR_SRC_DIR) && \
@@ -85,8 +102,13 @@ $(YEPPP_TGZ_PATH): | $(BASE_SRC_DIR)
 
 $(ROOT_EXE): | $(ROOT_SRC_DIR) $(BASE_INSTALL_DIR)
 	cd $(ROOT_SRC_DIR) && \
-		./configure --prefix=$(BASE_INSTALL_DIR) --fail-on-missing --minimal && \
-		$(MAKE) -j 2 && \
+		CC=$(GCC_DIR)/bin/gcc CXX=$(GCC_DIR)/bin/g++ PATH=$(GCC_DIR)/bin:$(PATH) \
+			./configure --prefix=$(BASE_INSTALL_DIR) --fail-on-missing --minimal && \
+		CC=$(GCC_DIR)/bin/gcc \
+		CXX=$(GCC_DIR)/bin/g++ \
+		LD_LIBRARY_PATH=$(GCC_DIR)/lib64:$(LD_LIBRARY_PATH) \
+		PATH=$(GCC_DIR)/bin:$(PATH) \
+			$(MAKE) -j 2 && \
 		$(MAKE) install
 
 $(ROOT_SRC_DIR): $(ROOT_TGZ_PATH) | $(BASE_SRC_DIR)
@@ -223,10 +245,15 @@ debian:
 	cp -rv $(BASE_INSTALL_DIR)/share $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)
 	
 	# install the gcc-4.8.4 related depdendencies
-	cp -v /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19 $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
+	cp -v $(GCC_DIR)/lib64/libstdc++.so.6.0.19 $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
 	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libstdc++.so.6.0.19 libstdc++.so.6
 	
-	cp -v /lib/x86_64-linux-gnu/libgcc_s.so.1 $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
+	cp -v $(GCC_DIR)/lib64/libgcc_s.so.1 $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
+	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libgcc_s.so.1 libgcc_s.so
+	
+	cp -v $(GCC_DIR)/lib64/libgomp.so.1.0.0 $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
+	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libgomp.so.1.0.0 libgomp.so
+	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libgomp.so.1.0.0 libgomp.so.1
 	
 	# create the "wrapper" scripts for cnvnator and root
 	mkdir -p $(DEB_BUILD_DIR)/usr/local/bin
