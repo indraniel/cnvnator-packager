@@ -31,9 +31,10 @@ CNVNATOR_EXE       := $(BASE_INSTALL_DIR)/bin/cnvnator-$(CNVNATOR_VERSION)
 SAMTOOLS_LIB       := $(CNVNATOR_SRC_DIR)/samtools/libbam.a
 
 DEB_BUILD_DIR       := $(BASE_DIR)/deb-build
-DEB_RELEASE_VERSION := 1
+UBUNTU_EDITION      := $(shell . /etc/lsb-release; echo $$DISTRIB_RELEASE)
+DEB_RELEASE_VERSION := 1ubuntu$(UBUNTU_EDITION)
 DEB_PKG             := cnvnator_$(CNVNATOR_VERSION)-$(DEB_RELEASE_VERSION).deb
-DEB_PKG_PATH        := $(BASE_DIR)/cnvnator_$(CNVNATOR_VERSION)-$(DEB_RELEASE_VERSION).deb
+DEB_PKG_PATH        := $(BASE_DIR)/$(DEB_PKG)
 DEB_BASE_INSTALL    := /opt/cnvnator-$(CNVNATOR_VERSION)
 
 all: dependencies build
