@@ -218,32 +218,11 @@ debian:
 	cp -rv $(BASE_INSTALL_DIR)/lib $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)
 	cp -rv $(BASE_INSTALL_DIR)/share $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)
 	
-	# install the underlying system library depdendencies
-	cp -v /lib/x86_64-linux-gnu/libz.so.1.2.8 $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
-	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libz.so.1.2.8 libz.so.1
-	
+	# install the gcc-4.8.4 related depdendencies
 	cp -v /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19 $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
 	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libstdc++.so.6.0.19 libstdc++.so.6
 	
-	cp -v /lib/x86_64-linux-gnu/libm-2.19.so $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
-	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libm-2.19.so libm.so.6
-	
-	cp -v /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0 $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
-	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libgomp.so.1.0.0 libgomp.so.1
-	
 	cp -v /lib/x86_64-linux-gnu/libgcc_s.so.1 $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
-	
-	cp -v /lib/x86_64-linux-gnu/libpthread-2.19.so $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
-	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libpthread-2.19.so libpthread.so.0
-	
-	cp -v /lib/x86_64-linux-gnu/libc-2.19.so $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
-	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libc-2.19.so libc.so.6
-	
-	cp -v /lib/x86_64-linux-gnu/libdl-2.19.so $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
-	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s libdl-2.19.so libdl.so.2
-	
-	cp -v /lib/x86_64-linux-gnu/ld-2.19.so $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib
-	cd $(DEB_BUILD_DIR)/$(DEB_BASE_INSTALL)/lib && ln -s ld-2.19.so ld-linux-x86-64.so.2
 	
 	# create the "wrapper" scripts for cnvnator and root
 	mkdir -p $(DEB_BUILD_DIR)/usr/local/bin
