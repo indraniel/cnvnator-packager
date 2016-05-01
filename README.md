@@ -32,7 +32,8 @@ This repository contains code to help assist in compiling [`CNVnator`][1] and cr
 
 ## NOTES
 
-The overall build directory can be changed by updating the `BASE_DIR` parameter in the `Makefile`.
+* The overall build directory can be changed by updating the `BASE_DIR` parameter in the `Makefile`.
+* You'll need access to a `gcc` version 4.8 or higher to properly compile `ROOT`.
 
 [1]: https://github.com/abyzovlab/CNVnator
 [2]: https://root.cern.ch/
