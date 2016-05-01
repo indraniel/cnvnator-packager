@@ -104,6 +104,7 @@ $(BASE_SRC_DIR):
 	if [ ! -e $(BASE_SRC_DIR) ]; then mkdir -p $(BASE_SRC_DIR); fi;
 
 dependencies: initialize-repo
+	sudo apt-get install -y libgomp1
 	sudo apt-get install -y libxpm4 libxpm-dev
 	sudo apt-get install -y zlib1g zlib1g-dev
 	sudo apt-get install -y git
