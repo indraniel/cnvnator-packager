@@ -149,11 +149,12 @@ export root_wrapper
 
 # DEBIAN CONTROL FILE #########################################################
 define debian_control
-Package: cnvnator
+Package: cnvnator-$(CNVNATOR_VERSION)
 Architecture: amd64
 Section: science
 Maintainer: Indraniel Das <idas@wustl.edu>
 Priority: optional
+Depends: libc6, zlib1g, libgomp1
 Description: An unofficial WUSTL MGI package of CNVnator ( $(CNVNATOR_VERSION) )
 Version: $(CNVNATOR_VERSION)-$(DEB_RELEASE_VERSION)
 endef
