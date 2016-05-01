@@ -176,7 +176,7 @@ Architecture: amd64
 Section: science
 Maintainer: Indraniel Das <idas@wustl.edu>
 Priority: optional
-Depends: libc6, zlib1g, libgomp1
+Depends: libc6, zlib1g, libgomp1, liblzma1, libpcre3, libfreetype6
 Description: An unofficial WUSTL MGI package of CNVnator ( $(CNVNATOR_VERSION) )
 Version: $(CNVNATOR_VERSION)-$(DEB_RELEASE_VERSION)
 endef
