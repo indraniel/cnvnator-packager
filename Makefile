@@ -138,6 +138,7 @@ dependencies: initialize-repo
 	sudo apt-get install -y zlib1g zlib1g-dev
 	sudo apt-get install -y git-core
 	sudo apt-get install -y libncurses5-dev
+	sudo apt-get install -y libmpc2
 	
 initialize-repo:
 	sudo apt-get update
