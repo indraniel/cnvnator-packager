@@ -1,7 +1,9 @@
 .PHONY: clean dependencies debian
 
-BASE_DIR          := $(HOME)/automation
-BASE_INSTALL_DIR  := $(BASE_DIR)/local
+CNVNATOR_VERSION  := 0.3.2
+
+BASE_DIR          := /opt/cnvnator-$(CNVNATOR_VERSION)
+BASE_INSTALL_DIR  := $(BASE_DIR)
 BASE_SRC_DIR      := $(BASE_DIR)/src
 
 ROOT_TGZ          := root_v6.06.02.source.tar.gz
@@ -14,7 +16,6 @@ YEPPP_TGZ_PATH    := $(BASE_SRC_DIR)/$(YEPPP_TGZ)
 YEPPP_SRC_DIR     := $(BASE_SRC_DIR)/yeppp-1.0.0
 
 CNVNATOR_SRC_DIR  := $(BASE_SRC_DIR)/CNVnator
-CNVNATOR_VERSION  := 0.3.2
 CNVNATOR_TAG      := v$(CNVNATOR_VERSION)
 
 SAMTOOLS_TGZ      := samtools-1.3.tar.bz2
@@ -98,10 +99,16 @@ $(ROOT_TGZ_PATH): | $(BASE_SRC_DIR)
 		curl -L -O $(ROOT_SITE_URL)
 
 $(BASE_INSTALL_DIR):
-	if [ ! -e $(BASE_INSTALL_DIR) ]; then mkdir -p $(BASE_INSTALL_DIR); fi;
+	if [ ! -e $(BASE_INSTALL_DIR) ]; then \
+		sudo mkdir -p $(BASE_INSTALL_DIR); \
+		sudo chown -R $(USER):$(USER) $(BASE_DIR); \
+	fi;
 
 $(BASE_SRC_DIR):
-	if [ ! -e $(BASE_SRC_DIR) ]; then mkdir -p $(BASE_SRC_DIR); fi;
+	if [ ! -e $(BASE_SRC_DIR) ]; then \
+		sudo mkdir -p $(BASE_SRC_DIR); \
+		sudo chown -R $(USER):$(USER) $(BASE_DIR); \
+	fi;
 
 dependencies: initialize-repo
 	sudo apt-get install -y libgomp1
