@@ -3,7 +3,7 @@
 CNVNATOR_VERSION  := 0.3.2
 
 # setup a custom gcc 4.8.4
-GCC_DIR           := /gscuser/idas/software/gcc/gcc-4.8.4
+GCC_DIR           := $(HOME)/gcc-4.8.4
 export CC         := $(GCC_DIR)/bin/gcc
 export CXX        := $(GCC_DIR)/bin/g++
 export $(PATH)    := $(GCC_DIR)/bin:$(PATH)
