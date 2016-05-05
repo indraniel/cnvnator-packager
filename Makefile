@@ -8,6 +8,9 @@ export CC         := $(GCC_DIR)/bin/gcc
 export CXX        := $(GCC_DIR)/bin/g++
 export $(PATH)    := $(GCC_DIR)/bin:$(PATH)
 
+# specify PYTHON PATH -- install pyenv -> "set pyenv global 2.7.10"
+PYTHON_PATH       := $(HOME)/.pyenv/versions/2.7.10
+
 BASE_DIR          := /opt/cnvnator-$(CNVNATOR_VERSION)
 BASE_INSTALL_DIR  := $(BASE_DIR)
 BASE_SRC_DIR      := $(BASE_DIR)/src
@@ -104,13 +107,18 @@ $(YEPPP_TGZ_PATH): | $(BASE_SRC_DIR)
 $(ROOT_EXE): | $(ROOT_SRC_DIR) $(BASE_INSTALL_DIR)
 	cd $(ROOT_SRC_DIR) && \
 		CC=$(GCC_DIR)/bin/gcc CXX=$(GCC_DIR)/bin/g++ PATH=$(GCC_DIR)/bin:$(PATH) \
-			./configure --prefix=$(BASE_INSTALL_DIR) --fail-on-missing --minimal && \
+			LD_LIBRARY_PATH=$(GCC_DIR)/lib64:$(LD_LIBRARY_PATH) \
+			./configure --prefix=$(BASE_INSTALL_DIR) --fail-on-missing --minimal --with-python=$(PYTHON_PATH)/bin/python && \
 		CC=$(GCC_DIR)/bin/gcc \
 		CXX=$(GCC_DIR)/bin/g++ \
-		LD_LIBRARY_PATH=$(GCC_DIR)/lib64:$(LD_LIBRARY_PATH) \
+		LD_LIBRARY_PATH=$(GCC_DIR)/lib64:$(PYTHON_PATH)/lib:$(LD_LIBRARY_PATH) \
 		PATH=$(GCC_DIR)/bin:$(PATH) \
 			$(MAKE) -j 2 && \
-		$(MAKE) install
+		CC=$(GCC_DIR)/bin/gcc \
+		CXX=$(GCC_DIR)/bin/g++ \
+		LD_LIBRARY_PATH=$(GCC_DIR)/lib64:$(PYTHON_PATH)/lib:$(LD_LIBRARY_PATH) \
+		PATH=$(GCC_DIR)/bin:$(PATH) \
+			$(MAKE) install
 
 $(ROOT_SRC_DIR): $(ROOT_TGZ_PATH) | $(BASE_SRC_DIR)
 	cd $(BASE_SRC_DIR) && \
