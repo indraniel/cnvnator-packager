@@ -136,7 +136,7 @@ dependencies: initialize-repo
 	sudo apt-get install -y libgomp1
 	sudo apt-get install -y libxpm4 libxpm-dev
 	sudo apt-get install -y zlib1g zlib1g-dev
-	sudo apt-get install -y git
+	sudo apt-get install -y git-core
 	sudo apt-get install -y libncurses5-dev
 	
 initialize-repo:
