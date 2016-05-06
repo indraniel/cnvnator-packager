@@ -3,7 +3,7 @@
 CNVNATOR_VERSION  := 0.3.2
 
 # setup a custom gcc 4.8.4
-GCC_DIR           := $(HOME)/gcc-4.8.4
+GCC_DIR           := /opt/gcc-4.8.4
 export CC         := $(GCC_DIR)/bin/gcc
 export CXX        := $(GCC_DIR)/bin/g++
 export $(PATH)    := $(GCC_DIR)/bin:$(PATH)
@@ -192,7 +192,7 @@ Architecture: amd64
 Section: science
 Maintainer: Indraniel Das <idas@wustl.edu>
 Priority: optional
-Depends: libc6, zlib1g, libgomp1, liblzma1, libpcre3, libfreetype6
+Depends: gcc-4.8.4, libc6, zlib1g, libgomp1, liblzma1, libpcre3, libfreetype6
 Description: An unofficial WUSTL MGI package of CNVnator ( $(CNVNATOR_VERSION) )
 Version: $(CNVNATOR_VERSION)-$(DEB_RELEASE_VERSION)
 endef
