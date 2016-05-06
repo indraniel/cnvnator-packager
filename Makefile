@@ -206,7 +206,7 @@ BASE=$(DEB_BASE_INSTALL)
 SUBDIRS=(bin etc include lib include share)
 
 if [ -e $${BASE} ]; then
-    ROOT=$${BASE}/srasearch
+	ROOT=$${BASE}/cnvnator-$(CNVNATOR_VERSION)
     for subdir in $${SUBDIRS[*]}; do
         DIR=$${ROOT}/$${subdir}
         if [ ! -e $${DIR} ]; then
