@@ -165,8 +165,8 @@ define cnvnator_wrapper
 
 BASE=$(DEB_BASE_INSTALL)
 
-export LD_LIBRARY_PATH=$${BASE}/lib:$${BASE}/lib/root:$${LD_LIBRARY_PATH}
-export PATH=$${BASE}/bin:$${PATH}
+export LD_LIBRARY_PATH=$${BASE}/lib:$${BASE}/lib/root:$${GCC_DIR}/lib64:$${LD_LIBRARY_PATH}
+export PATH=$${BASE}/bin:$${GCC_DIR}/bin:$${PATH}
 
 $${BASE}/bin/cnvnator-$(CNVNATOR_VERSION) $$@
 endef
@@ -178,8 +178,8 @@ define root_wrapper
 
 BASE=$(DEB_BASE_INSTALL)
 
-export LD_LIBRARY_PATH=$${BASE}/lib:$${BASE}/lib/root:$${LD_LIBRARY_PATH}
-export PATH=$${BASE}/bin:$${PATH}
+export LD_LIBRARY_PATH=$${BASE}/lib:$${BASE}/lib/root:$${GCC_DIR}/lib64:$${LD_LIBRARY_PATH}
+export PATH=$${BASE}/bin:$${GCC_DIR}/bin:$${PATH}
 
 $${BASE}/bin/root.exe $$@
 endef
