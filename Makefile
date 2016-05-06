@@ -164,6 +164,7 @@ define cnvnator_wrapper
 #!/bin/bash
 
 BASE=$(DEB_BASE_INSTALL)
+GCC_DIR=$(GCC_DIR)
 
 export LD_LIBRARY_PATH=$${BASE}/lib:$${BASE}/lib/root:$${GCC_DIR}/lib64:$${LD_LIBRARY_PATH}
 export PATH=$${BASE}/bin:$${GCC_DIR}/bin:$${PATH}
@@ -177,6 +178,7 @@ define root_wrapper
 #!/bin/bash
 
 BASE=$(DEB_BASE_INSTALL)
+GCC_DIR=$(GCC_DIR)
 
 export LD_LIBRARY_PATH=$${BASE}/lib:$${BASE}/lib/root:$${GCC_DIR}/lib64:$${LD_LIBRARY_PATH}
 export PATH=$${BASE}/bin:$${GCC_DIR}/bin:$${PATH}
