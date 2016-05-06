@@ -194,7 +194,7 @@ Architecture: amd64
 Section: science
 Maintainer: Indraniel Das <idas@wustl.edu>
 Priority: optional
-Depends: gcc-4.8.4, libc6, zlib1g, libgomp1, liblzma1, libpcre3, libfreetype6
+Depends: gcc-4.8.4, libc6, zlib1g, libgomp1, liblzma1, libpcre3, libfreetype6, libmpc2
 Description: An unofficial WUSTL MGI package of CNVnator ( $(CNVNATOR_VERSION) )
 Version: $(CNVNATOR_VERSION)-$(DEB_RELEASE_VERSION)
 endef
