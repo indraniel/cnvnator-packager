@@ -1,8 +1,8 @@
 # Build Process for Ubuntu 10.04
 
-Ubuntu 10.04 is [no longer supported][1].  However, it's currently the primary operating system on the computational cluster at the [McDonnell Genome Institute at Washington University][2].  This is a record of what was done to build the latest version of CNVnator on it.
+Ubuntu 10.04 is [no longer supported][1];  however, it's currently the primary operating system on the computational cluster at the [McDonnell Genome Institute at Washington University][2].  This is a record of what was done to build the latest version of CNVnator for Ubuntu 10.04.
 
-These instructions are based upon using a "default" untainted [Ubuntu 10.04 cloud image for OpenStack][3]. With a user and group both named `ubuntu`.
+These instructions are based upon using a "default" untainted [Ubuntu 10.04 cloud image for OpenStack][3], and with a user and group both named `ubuntu`.
 
 ## Initial Image Setup
 
