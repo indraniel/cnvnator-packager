@@ -2,6 +2,8 @@
 
 This repository contains code to help assist in compiling [`CNVnator`][1] and creating rudimentary debian packages.  Currently this downloads, compiles, and packages [`ROOT`][2] _(version 6.06.02)_, [`YEPPP`][3] _(version 1.0.0)_, [`samtools`][4] _(version 1.3)_, and [`CNVNator`][1] _(version 0.3.2)_ .
 
+These instructions are based upon using a "default" untainted [Ubuntu cloud images for OpenStack][6], and with a user and group both named `ubuntu`.
+
 ## Pre-compiled binary packages
 
 For already pre-compiled debian packages please see [cnvnator-packages][5].
@@ -21,18 +23,12 @@ For already pre-compiled debian packages please see [cnvnator-packages][5].
     make
     # package up the relevant libraries, headers, files and executables
     make debian
+
+    # check package existence
+    ls -al /opt/cnvnator-0.3.2/*.deb
     
-    # look up the package
-    cd $HOME/automation
-
-    # install the package
-    sudo dpkg -i $HOME/automation/cnvnator_0.3.2-1ubuntuX.Y.deb
-
-    # run CNVnator
-    /usr/local/bin/cnvnator
-
-    # run ROOT
-    /usr/local/bin/root
+    # extract the CNVnator debian package to your host machine
+    scp /opt/cnvnator-0.3.2/*.deb your-username@your-hostmachine:/path/to/download/directory
 
 ## NOTES
 
@@ -44,3 +40,4 @@ For already pre-compiled debian packages please see [cnvnator-packages][5].
 [3]: https://www.yeppp.info/
 [4]: https://github.com/samtools/samtools
 [5]: https://github.com/indraniel/cnvnator-packages
+[6]: https://cloud-images.ubuntu.com
