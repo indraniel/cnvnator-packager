@@ -33,7 +33,7 @@ pyenv install 2.7.10
 pyenv global 2.7.10
 
 # get a newer version of gcc
-scp idas@linus261:/gscmnt/gc2802/halllab/idas/cnvnator-packages/gcc*.deb .
+curl -L -O https://github.com/indraniel/cnvnator-packages/releases/download/v0.3.2-1/gcc_4.8.4-1ubuntu10.04.deb
 sudo dpkg -i gcc_4.8.4-1ubuntu10.04.deb
 ```
 
@@ -53,7 +53,7 @@ make 2>&1 |tee out.log
 make debian
 
 # extract the CNVnator debian package to your host machine
-scp /opt/cnvnator-0.3.2/cnvnator_0.3.2-1ubuntu10.04.deb idas@linus261:/gscmnt/gc2802/halllab/idas/cnvnator-packages
+scp /opt/cnvnator-0.3.2/cnvnator_0.3.2-1ubuntu10.04.deb your-username@your-hostmachine:/path/to/download/directory
 ```
 
 [1]: https://wiki.ubuntu.com/LTS
