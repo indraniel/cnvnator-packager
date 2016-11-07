@@ -37,7 +37,7 @@ Afterwards, you should be able to see a `cnvnator_0.3.3-1ubuntu14.04.deb` debian
 
 * The overall build directory can be changed by updating the `BASE_DIR` parameter in the `Makefile`.
 * You'll need access to a `gcc` version 4.8 or higher to properly compile `ROOT`.
-* The debian package isn't optimized for the general use case, but rather for it's usage within [speedseq][8].  You'll have to make adjustments with the dependencies and build process for `cnvnator` to work for other cases;  most notably, the current build process suppress ROOT's/CNVnator's ability to display graphics via the X Windows system, and ROOT's python integration.
+* The debian package isn't optimized for the general use case, but rather for `CNVnator`'s usage within [speedseq][8].  You'll have to make adjustments with the dependencies and build process for `cnvnator` to work for other cases;  most notably, the current build process suppress ROOT's/CNVnator's ability to display graphics via the X Windows system, and ROOT's python integration.
 
 [1]: https://github.com/abyzovlab/CNVnator
 [2]: https://root.cern.ch/
