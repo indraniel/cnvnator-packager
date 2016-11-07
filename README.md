@@ -1,6 +1,6 @@
 # `CNVnator` packager
 
-This repository contains code to help assist in compiling [`CNVnator`][1] and creating rudimentary debian packages.  Currently this downloads, compiles, and packages [`ROOT`][2] _(version 6.06.02)_, [`YEPPP`][3] _(version 1.0.0)_, [`samtools`][4] _(version 1.3)_, and [`CNVNator`][1] _(version 0.3.2)_ .
+This repository contains code to help assist in compiling [`CNVnator`][1] and creating rudimentary debian packages.  Currently this downloads, compiles, and packages [`ROOT`][2] _(version 6.06.02)_, [`YEPPP`][3] _(version 1.0.0)_, [`samtools`][4] _(version 1.3)_, and [`CNVNator`][1] _(version 0.3.3)_ .
 
 These instructions are based on using [Docker][6] and a base [ubuntu:14.04][7] docker image.
 
