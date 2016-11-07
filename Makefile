@@ -68,7 +68,7 @@ $(SAMTOOLS_TGZ_PATH): | $(CNVNATOR_SRC_DIR)
 
 $(CNVNATOR_SRC_DIR): | $(BASE_SRC_DIR)
 	cd $(BASE_SRC_DIR) && \
-		git clone https://github.com/abyzovlab/CNVnator && \
+		git clone https://github.com/indraniel/CNVnator && \
 		cd CNVnator && \
 		git checkout tags/$(CNVNATOR_TAG) -b $(CNVNATOR_TAG)
 
