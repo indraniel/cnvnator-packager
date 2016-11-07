@@ -1,6 +1,6 @@
 .PHONY: clean dependencies debian
 
-CNVNATOR_VERSION  := 0.3.2
+CNVNATOR_VERSION  := 0.3.3
 
 BASE_DIR          := /opt/cnvnator-$(CNVNATOR_VERSION)
 BASE_INSTALL_DIR  := $(BASE_DIR)
