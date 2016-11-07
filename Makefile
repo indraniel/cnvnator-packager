@@ -37,6 +37,7 @@ DEB_RELEASE_VERSION := 1ubuntu$(UBUNTU_EDITION)
 DEB_PKG             := cnvnator_$(CNVNATOR_VERSION)-$(DEB_RELEASE_VERSION).deb
 DEB_PKG_PATH        := $(BASE_DIR)/$(DEB_PKG)
 DEB_BASE_INSTALL    := /opt/cnvnator-$(CNVNATOR_VERSION)
+DEB_RELEASE_DIR     := /release
 
 all: dependencies build
 
@@ -245,6 +246,6 @@ debian:
 	# assemble the formal "deb" package
 	cd $(DEB_BUILD_DIR) && \
 		ar rc $(DEB_PKG) debian-binary control.tar.gz data.tar.gz && \
-		mv $(DEB_PKG) ..
+		mv $(DEB_PKG) $(DEB_RELEASE_DIR)
 
 # https://www.gnu.org/software/make/manual/html_node/Prerequisite-Types.html
