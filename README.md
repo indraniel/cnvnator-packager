@@ -15,14 +15,14 @@ For already pre-compiled debian packages please see [cnvnator-packages][5].
     git clone https://github.com/indraniel/cnvnator-packager
     cd cnvnator-packager
     docker build -t cnvnator:v1 .
-    docker run -i -t $PWD:/release --rm cnvnator:v1
+    docker run -i -t -v $PWD:/release --rm cnvnator:v1
 
 Afterwards, you should be able to see a `cnvnator_0.3.3-1ubuntu14.04.deb` debian package inside the root git `cnvnator-packager` repository directory.
 
 ### Post-Package Creation Testing
 
     cd cnvnator-packager # the root git repository directory
-    docker run -i -t $PWD:/release --rm cnvnator:v1 bash
+    docker run -i -t -v $PWD:/release --rm cnvnator:v1 bash
 
     # inside the docker container bash shell
     cd /release
